@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<li><a th:href="@{/}"> 首页 </a></li>
+<form name="form" th:action="@{/login}" method="POST">
+    <input type="text" name="username"/>账号
+    <input type="password" name="password"/>密码
+    <input type="submit" name="login" value="登录"/>
+    <p th:if="${param.logout}" >已成功注销</p>
+    <p th:if="${param.error}">有错误，请重试</p>
+
+</form>
+</body>
+</html>

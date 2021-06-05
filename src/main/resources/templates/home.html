@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <#assign  user=Session.SPRING_SECURITY_CONTEXT.authentication.principal/>
+</head>
+
+<body>
+<div class="starter-template">
+    <h1 th:text="${msg.title}"></h1>
+
+    <p th:text="${msg.content}"></p>
+
+    <div sec:authorize="hasRole('ROLE_ADMIN')"> <!-- 用户类型为ROLE_ADMIN 显示 -->
+        <p class="bg-info" th:text="${msg.etraInfo}"></p>
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_USER')"> <!-- 用户类型为 ROLE_USER 显示 -->
+        <p class="bg-info">无更多信息显示</p>
+    </div>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" class="btn btn-primary" value="注销"/>
+    </form>
+</div>
+
+</body>
+</html>
